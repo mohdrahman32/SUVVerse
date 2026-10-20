@@ -1,0 +1,177 @@
+
+/* ==========================================
+   SUVVerse — App Layout Utilities
+   File: src/App.css
+   ========================================== */
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.container {
+  width: min(
+    calc(100% - 2 * var(--gutter-desktop)),
+    var(--container-max)
+  );
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-20);
+}
+
+.section--compact {
+  padding-block: var(--space-12);
+}
+
+.section-heading {
+  max-width: 46rem;
+  margin-bottom: var(--space-10);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  color: var(--color-olive-dark);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.display-title {
+  max-width: 13ch;
+  margin-bottom: var(--space-6);
+  font-size: var(--heading-xl);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.section-title {
+  margin-bottom: var(--space-4);
+  font-size: var(--heading-md);
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.body-copy {
+  max-width: 60ch;
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+  line-height: 1.8;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0.875rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.button--primary {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--color-olive-dark);
+}
+
+.button--secondary {
+  border-color: var(--color-border-strong);
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.button--secondary:hover:not(:disabled) {
+  border-color: var(--color-ink);
+  background: var(--color-surface-muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .section--compact {
+    padding-block: var(--space-8);
+  }
+
+  .section-heading {
+    margin-bottom: var(--space-8);
+  }
+
+  .body-copy {
+    font-size: var(--text-base);
+    line-height: 1.75;
+  }
+}
+
+
+/* ==========================================
+   Homepage — Integration Preview
+   Temporary scaffolding for Phase 2B
+   ========================================== */
+
+.homepage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.homepage-placeholder {
+  padding-block: var(--space-24);
+  border-top: 1px solid var(--color-border);
+}
+
+.homepage-placeholder:nth-of-type(even) {
+  background: var(--color-surface);
+}
+
+@media (max-width: 480px) {
+  .homepage-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .homepage-actions .button {
+    width: 100%;
+  }
+}

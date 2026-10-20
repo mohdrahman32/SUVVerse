@@ -1,0 +1,904 @@
+
+/* =========================================================
+   SUVVERSE — PHASE 2H
+   Ownership guides and running-cost estimator
+   ========================================================= */
+
+.ownership {
+  overflow: clip;
+  background: var(--color-paper, #f5f3ee);
+  color: var(--color-ink, #222522);
+}
+
+.ownership-section__header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: end;
+  gap: 3rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ownership-section__line {
+  display: inline-block;
+  width: 1.75rem;
+  height: 1px;
+  margin-right: 0.7rem;
+  vertical-align: middle;
+  background: var(--color-olive, #6f795d);
+}
+
+.ownership-section__heading .section-title {
+  margin: 1rem 0 0;
+  letter-spacing: -0.06em;
+  line-height: 1.05;
+}
+
+.ownership-section__heading .section-title span {
+  color: var(--color-olive, #6f795d);
+  font-weight: 400;
+}
+
+.ownership-section__description {
+  max-width: 29rem;
+  justify-self: end;
+}
+
+.ownership-section__description .body-copy {
+  line-height: 1.85;
+}
+
+.ownership-section__description > a,
+.ownership-section__closing > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  color: var(--color-ink, #222522);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--color-olive, #6f795d);
+  text-underline-offset: 5px;
+}
+
+.ownership-section__description > a svg,
+.ownership-section__closing > a svg {
+  transition: transform 180ms ease;
+}
+
+.ownership-section__description > a:hover svg,
+.ownership-section__closing > a:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Editorial banner */
+
+.ownership-section__banner {
+  position: relative;
+  display: flex;
+  min-height: 350px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  overflow: hidden;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background:
+    radial-gradient(ellipse at 80% 15%, rgba(190, 195, 174, 0.16), transparent 42%),
+    linear-gradient(115deg, #292d27 0%, #353a30 58%, #59634c 100%);
+  color: #fff;
+}
+
+.ownership-section__banner::before,
+.ownership-section__banner::after {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.ownership-section__banner::before {
+  top: -12rem;
+  right: 8%;
+  width: 26rem;
+  height: 26rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.ownership-section__banner::after {
+  top: -6rem;
+  right: 17%;
+  width: 16rem;
+  height: 16rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.ownership-section__banner-content {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+}
+
+.ownership-section__banner-content > span {
+  color: #d3d7c9;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.ownership-section__banner-content h3 {
+  margin: 1.1rem 0;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(2.3rem, 5.5vw, 4.6rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.02;
+}
+
+.ownership-section__banner-content > p {
+  max-width: 29rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.86rem;
+  line-height: 1.85;
+}
+
+.ownership-section__banner-mark {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 110px;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-self: flex-start;
+  padding-top: 0.5rem;
+}
+
+.ownership-section__banner-mark > span {
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.1em;
+}
+
+.ownership-section__banner-mark > div {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.ownership-section__banner-mark > small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.56rem;
+  letter-spacing: 0.12em;
+  text-align: right;
+}
+
+/* Guide section heading */
+
+.ownership-section__cards-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: clamp(3rem, 6vw, 5rem) 0 1.5rem;
+}
+
+.ownership-section__cards-heading .eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--color-olive, #6f795d);
+}
+
+.ownership-section__cards-heading h3 {
+  margin: 0;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.ownership-section__cards-heading > span {
+  color: var(--color-muted, #77786f);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Guide cards */
+
+.ownership-section__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ownership-card {
+  display: flex;
+  min-width: 0;
+  min-height: 310px;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2.8vw, 2rem);
+  border: 1px solid var(--color-border, #e5e2da);
+  background: #fff;
+  transition:
+    border-color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.ownership-card:hover {
+  transform: translateY(-3px);
+  border-color: #c6cbb9;
+  box-shadow: 0 12px 30px rgba(34, 37, 34, 0.05);
+}
+
+.ownership-card--olive {
+  background: #e8eadf;
+}
+
+.ownership-card--stone {
+  background: #ebe8df;
+}
+
+.ownership-card--dark {
+  border-color: #34392f;
+  background: #292d27;
+  color: #fff;
+}
+
+.ownership-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.ownership-card__number {
+  color: var(--color-muted, #77786f);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.ownership-card--dark .ownership-card__number {
+  color: #c2c8b8;
+}
+
+.ownership-card__icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(111, 121, 93, 0.35);
+  border-radius: 50%;
+  color: var(--color-olive, #6f795d);
+  font-size: 1.15rem;
+}
+
+.ownership-card--dark .ownership-card__icon {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #d5ddc9;
+}
+
+.ownership-card__category {
+  margin: 0 0 0.7rem;
+  color: var(--color-olive, #6f795d);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.ownership-card--dark .ownership-card__category {
+  color: #c8d1b9;
+}
+
+.ownership-card h3 {
+  margin: 0;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(1.55rem, 2.7vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
+}
+
+.ownership-card__description {
+  max-width: 30rem;
+  margin: 0.85rem 0 1.5rem;
+  color: var(--color-muted, #77786f);
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+.ownership-card--dark .ownership-card__description {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.ownership-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(119, 120, 111, 0.22);
+}
+
+.ownership-card__bottom > span,
+.ownership-card__bottom > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+}
+
+.ownership-card__bottom > span {
+  color: var(--color-muted, #77786f);
+}
+
+.ownership-card--dark .ownership-card__bottom > span {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ownership-card__bottom > button {
+  min-height: 44px;
+  padding: 0.5rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink, #222522);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.ownership-card--dark .ownership-card__bottom > button {
+  color: #fff;
+}
+
+.ownership-card__bottom > button svg {
+  transition: transform 180ms ease;
+}
+
+.ownership-card__bottom > button:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Running-cost estimator */
+
+.ownership-calculator {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--color-border, #e5e2da);
+  scroll-margin-top: 6rem;
+}
+
+.ownership-calculator__intro {
+  position: sticky;
+  top: 7rem;
+}
+
+.ownership-calculator__intro .eyebrow {
+  line-height: 1.8;
+}
+
+.ownership-calculator__intro h3 {
+  margin: 1rem 0;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.04;
+}
+
+.ownership-calculator__intro h3 span {
+  color: var(--color-olive, #6f795d);
+  font-weight: 400;
+}
+
+.ownership-calculator__intro > p:not(.eyebrow) {
+  max-width: 29rem;
+  color: var(--color-muted, #77786f);
+  font-size: 0.85rem;
+  line-height: 1.9;
+}
+
+.ownership-calculator__disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border, #e5e2da);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ownership-calculator__disclaimer > svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--color-olive, #6f795d);
+}
+
+.ownership-calculator__disclaimer > span {
+  color: var(--color-muted, #77786f);
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+
+.ownership-calculator__panel {
+  min-width: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--color-border, #e5e2da);
+  background: #fff;
+}
+
+.ownership-calculator__panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border, #e5e2da);
+}
+
+.ownership-calculator__panel-label {
+  color: var(--color-olive, #6f795d);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.ownership-calculator__panel-heading h4 {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.ownership-calculator__panel-heading > button {
+  min-height: 44px;
+  padding: 0.5rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-muted, #77786f);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ownership-calculator__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem 1rem;
+}
+
+.ownership-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.ownership-field > span:first-child {
+  color: var(--color-muted, #77786f);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.ownership-field__input {
+  display: flex;
+  min-width: 0;
+  min-height: 48px;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--color-border, #e5e2da);
+  background: #faf9f6;
+  color: var(--color-muted, #77786f);
+  font-size: 0.75rem;
+}
+
+.ownership-field__input:focus-within {
+  border-color: var(--color-olive, #6f795d);
+  outline: 2px solid rgba(111, 121, 93, 0.15);
+  outline-offset: 1px;
+}
+
+.ownership-field__input input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-ink, #222522);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.ownership-field__input input:focus-visible {
+  outline: none;
+}
+
+/* Calculator results */
+
+.ownership-calculator__results {
+  margin-top: 1.75rem;
+  border: 1px solid var(--color-border, #e5e2da);
+}
+
+.ownership-calculator__result-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  background: #292d27;
+  color: #fff;
+}
+
+.ownership-calculator__result-main > span {
+  color: #d1d6c7;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+}
+
+.ownership-calculator__result-main > strong {
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  overflow-wrap: anywhere;
+}
+
+.ownership-calculator__result-main > small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+  line-height: 1.7;
+}
+
+.ownership-calculator__result-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-top: 1px solid var(--color-border, #e5e2da);
+}
+
+.ownership-calculator__result-row > span {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--color-muted, #77786f);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.ownership-calculator__result-row > span svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--color-olive, #6f795d);
+}
+
+.ownership-calculator__result-row > strong {
+  flex-shrink: 0;
+  color: var(--color-ink, #222522);
+  font-size: 0.78rem;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.ownership-calculator__validation {
+  margin: 1rem 0 0;
+  color: #795b2d;
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+/* Closing call to action */
+
+.ownership-section__closing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border, #e5e2da);
+  border-bottom: 1px solid var(--color-border, #e5e2da);
+}
+
+.ownership-section__closing .eyebrow {
+  margin: 0 0 0.55rem;
+  color: var(--color-olive, #6f795d);
+}
+
+.ownership-section__closing h3 {
+  margin: 0;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+/* Guide dialog */
+
+.ownership-dialog__backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  overflow-y: auto;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(20, 22, 19, 0.68);
+  backdrop-filter: blur(5px);
+}
+
+.ownership-dialog {
+  width: min(100%, 600px);
+  max-height: min(85vh, 800px);
+  overflow-y: auto;
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-border, #e5e2da);
+  background: var(--color-paper, #f5f3ee);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+}
+
+.ownership-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.ownership-dialog__icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid var(--color-border, #e5e2da);
+  border-radius: 50%;
+  color: var(--color-olive, #6f795d);
+  font-size: 1.2rem;
+}
+
+.ownership-dialog__close {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--color-border, #e5e2da);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--color-ink, #222522);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.6rem;
+}
+
+.ownership-dialog .eyebrow {
+  color: var(--color-olive, #6f795d);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.ownership-dialog h2 {
+  margin: 0.6rem 0 0.8rem;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+}
+
+.ownership-dialog__intro {
+  color: var(--color-muted, #77786f);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.ownership-dialog h3 {
+  margin: 1.75rem 0 1rem;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.ownership-dialog__list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ownership-dialog__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--color-ink, #222522);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.ownership-dialog__list li svg {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--color-olive, #6f795d);
+}
+
+.ownership-dialog__note {
+  margin-top: 1.75rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border, #e5e2da);
+  color: var(--color-muted, #77786f);
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+
+.ownership-dialog__done {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-ink, #222522);
+  background: var(--color-ink, #222522);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Accessible focus */
+
+.ownership button:focus-visible,
+.ownership a:focus-visible {
+  outline: 3px solid var(--color-olive, #6f795d);
+  outline-offset: 3px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .ownership-section__header {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .ownership-section__description {
+    max-width: 40rem;
+    justify-self: start;
+  }
+
+  .ownership-calculator {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .ownership-calculator__intro {
+    position: static;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .ownership-section__banner {
+    min-height: 320px;
+    padding: 1.5rem;
+  }
+
+  .ownership-section__banner-mark {
+    min-width: 64px;
+  }
+
+  .ownership-section__banner-mark > span {
+    font-size: 2.5rem;
+  }
+
+  .ownership-section__banner-mark > small {
+    max-width: 80px;
+    font-size: 0.48rem;
+    line-height: 1.6;
+  }
+
+  .ownership-section__banner-content > span {
+    font-size: 0.56rem;
+    line-height: 1.8;
+  }
+
+  .ownership-section__banner-content h3 {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
+
+  .ownership-section__banner-content > p {
+    font-size: 0.78rem;
+  }
+
+  .ownership-section__cards-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .ownership-section__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ownership-card {
+    min-height: 285px;
+  }
+
+  .ownership-calculator__fields {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ownership-section__closing {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+  .ownership-section__banner {
+    padding: 1.1rem;
+  }
+
+  .ownership-section__banner-mark {
+    display: none;
+  }
+
+  .ownership-calculator__panel {
+    padding: 1rem;
+  }
+
+  .ownership-calculator__result-row {
+    padding: 0.85rem;
+  }
+
+  .ownership-calculator__result-row > span,
+  .ownership-calculator__result-row > strong {
+    font-size: 0.68rem;
+  }
+
+  .ownership-dialog__backdrop {
+    padding: 0.6rem;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .ownership *,
+  .ownership-dialog__backdrop * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+  .ownership-card:hover {
+    transform: none;
+  }
+}

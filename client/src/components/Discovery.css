@@ -1,0 +1,459 @@
+
+/* ==========================================
+   SUVVerse — Editorial Discovery
+   File: src/components/Discovery.css
+   ========================================== */
+
+.discovery {
+  position: relative;
+  background: var(--color-paper);
+  overflow: clip;
+}
+
+/* Section heading */
+
+.discovery__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: clamp(32px, 5vw, 60px);
+}
+
+.discovery__heading {
+  max-width: 660px;
+}
+
+.discovery__heading .eyebrow {
+  margin-bottom: 20px;
+}
+
+.discovery__title {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(2.5rem, 5.2vw, 5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
+}
+
+.discovery__description {
+  max-width: 490px;
+  margin: 20px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.discovery__index {
+  flex-shrink: 0;
+  padding-bottom: 8px;
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+/* Asymmetric editorial grid */
+
+.discovery__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  grid-template-areas:
+    "feature city"
+    "feature family"
+    "value value";
+  gap: clamp(20px, 3vw, 36px);
+  align-items: start;
+}
+
+.discovery-card {
+  min-width: 0;
+}
+
+.discovery-card--feature {
+  grid-area: feature;
+}
+
+.discovery-card--city {
+  grid-area: city;
+}
+
+.discovery-card--family {
+  grid-area: family;
+}
+
+.discovery-card--value {
+  grid-area: value;
+}
+
+.discovery-card__link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.discovery-card__image-wrap {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-stone);
+}
+
+.discovery-card--feature .discovery-card__image-wrap {
+  aspect-ratio: 0.83;
+}
+
+.discovery-card--city .discovery-card__image-wrap {
+  aspect-ratio: 1.75;
+}
+
+.discovery-card--family .discovery-card__image-wrap {
+  aspect-ratio: 1.75;
+}
+
+.discovery-card--value .discovery-card__image-wrap {
+  aspect-ratio: 2.55;
+}
+
+.discovery-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 700ms var(--ease-standard),
+    filter 450ms var(--ease-standard);
+}
+
+.discovery-card--feature .discovery-card__image {
+  object-position: 55% center;
+}
+
+.discovery-card__image-wrap::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(20 22 19 / 14%) 0%,
+    transparent 32%,
+    transparent 65%,
+    rgb(20 22 19 / 12%) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.discovery-card__number {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgb(255 255 255 / 65%);
+  border-radius: 50%;
+  background: rgb(245 243 238 / 80%);
+  color: var(--color-ink);
+  font-size: 10px;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.discovery-card__arrow {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgb(255 255 255 / 65%);
+  border-radius: 50%;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transition:
+    color var(--duration-normal) var(--ease-standard),
+    background-color var(--duration-normal) var(--ease-standard),
+    transform var(--duration-normal) var(--ease-standard);
+}
+
+.discovery-card__arrow svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Card typography */
+
+.discovery-card__content {
+  padding-top: 20px;
+}
+
+.discovery-card__eyebrow {
+  margin: 0 0 9px;
+  color: var(--color-olive-dark);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.discovery-card__title {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.discovery-card__description {
+  margin: 9px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Budget/value category */
+
+.discovery-card--value .discovery-card__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+  padding: clamp(20px, 4vw, 48px);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+}
+
+.discovery-card--value .discovery-card__image-wrap {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.discovery-card--value .discovery-card__content {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 0;
+}
+
+.discovery-card--value .discovery-card__title {
+  max-width: 12ch;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+}
+
+.discovery-card--value .discovery-card__description {
+  max-width: 36ch;
+  font-size: 15px;
+}
+
+/* Footer */
+
+.discovery__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(32px, 5vw, 56px);
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.discovery__footer p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.discovery__all-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.discovery__all-link svg {
+  width: 17px;
+  height: 17px;
+  color: var(--color-olive);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.discovery__all-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Scroll reveals */
+
+.discovery [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 600ms var(--ease-standard),
+    transform 600ms var(--ease-standard);
+  transition-delay: calc(var(--reveal-order, 0) * 70ms);
+}
+
+.discovery [data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover only on devices that actually support hover */
+
+@media (hover: hover) and (pointer: fine) {
+  .discovery-card__link:hover .discovery-card__image {
+    transform: scale(1.045);
+  }
+
+  .discovery-card__link:hover .discovery-card__arrow {
+    transform: translate(2px, -2px);
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  .discovery__all-link:hover {
+    color: var(--color-olive-dark);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .discovery__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "feature feature"
+      "city family"
+      "value value";
+    gap: 28px 20px;
+  }
+
+  .discovery-card--feature .discovery-card__image-wrap {
+    aspect-ratio: 1.8;
+  }
+
+  .discovery-card--feature .discovery-card__image {
+    object-position: center 55%;
+  }
+
+  .discovery__index {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+  .discovery__header {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .discovery__heading .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .discovery__title {
+    font-size: clamp(2.3rem, 9vw, 3.5rem);
+    line-height: 1.04;
+  }
+
+  .discovery__description {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .discovery__index {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .discovery__grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "feature"
+      "city"
+      "family"
+      "value";
+    gap: 32px;
+  }
+
+  .discovery-card--feature .discovery-card__image-wrap {
+    aspect-ratio: 0.94;
+  }
+
+  .discovery-card--city .discovery-card__image-wrap,
+  .discovery-card--family .discovery-card__image-wrap {
+    aspect-ratio: 1.35;
+  }
+
+  .discovery-card--value .discovery-card__link {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 20px;
+  }
+
+  .discovery-card--value .discovery-card__image-wrap,
+  .discovery-card--value .discovery-card__content {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .discovery-card--value .discovery-card__image-wrap {
+    aspect-ratio: 1.4;
+  }
+
+  .discovery-card--value .discovery-card__title {
+    font-size: 2rem;
+  }
+
+  .discovery-card__content {
+    padding-top: 16px;
+  }
+
+  .discovery-card__title {
+    font-size: 1.5rem;
+  }
+
+  .discovery__footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .discovery__all-link {
+    align-self: flex-start;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .discovery [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .discovery-card__image,
+  .discovery-card__arrow,
+  .discovery__all-link svg {
+    transition: none;
+  }
+}
