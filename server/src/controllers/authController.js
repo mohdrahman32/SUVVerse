@@ -1,30 +1,48 @@
-
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
+const AUTH_COOKIE_NAME = "suvverseToken";
+
+const AUTH_COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/api",
+  maxAge: 60 * 60 * 1000,
+};
+
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body ?? {};
 
     // Validate required fields.
-    if (!name?.trim() || !email?.trim() || !password) {
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof password !== "string" ||
+      !name.trim() ||
+      !email.trim() ||
+      !password
+    ) {
       return res.status(400).json({
         success: false,
         message: "Name, email, and password are required.",
       });
     }
 
-    // Validate basic input requirements.
-    if (name.trim().length < 2 || name.trim().length > 80) {
+    const normalizedName = name.trim();
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // Validate name.
+    if (normalizedName.length < 2 || normalizedName.length > 80) {
       return res.status(400).json({
         success: false,
         message: "Name must be between 2 and 80 characters.",
       });
     }
 
-    const normalizedEmail = email.trim().toLowerCase();
-
+    // Validate email.
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
       return res.status(400).json({
         success: false,
@@ -32,14 +50,15 @@ export const registerUser = async (req, res) => {
       });
     }
 
-    if (typeof password !== "string" || password.length < 8 || password.length > 72) {
+    // Validate password.
+    if (password.length < 8 || password.length > 72) {
       return res.status(400).json({
         success: false,
         message: "Password must be between 8 and 72 characters.",
       });
     }
 
-    // Check whether the email is already registered.
+    // Check for an existing account.
     const existingUser = await User.findOne({
       email: normalizedEmail,
     });
@@ -51,11 +70,11 @@ export const registerUser = async (req, res) => {
       });
     }
 
-    // Never store the original password.
+    // Hash the password before saving.
     const passwordHash = await bcrypt.hash(password, 12);
 
     const user = await User.create({
-      name: name.trim(),
+      name: normalizedName,
       email: normalizedEmail,
       passwordHash,
     });
@@ -70,7 +89,6 @@ export const registerUser = async (req, res) => {
       },
     });
   } catch (error) {
-    // Handle duplicate email requests safely.
     if (error.code === 11000) {
       return res.status(409).json({
         success: false,
@@ -112,6 +130,7 @@ export const loginUser = async (req, res) => {
 
     if (!process.env.JWT_SECRET) {
       console.error("JWT_SECRET is missing from the environment.");
+
       return res.status(500).json({
         success: false,
         message: "Unable to log in right now.",
@@ -149,13 +168,8 @@ export const loginUser = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.cookie("suvverseToken", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/api",
-      maxAge: 60 * 60 * 1000,
-    });
+    // Set the cross-site authentication cookie for production HTTPS.
+    res.cookie(AUTH_COOKIE_NAME, token, AUTH_COOKIE_OPTIONS);
 
     return res.status(200).json({
       success: true,
@@ -177,11 +191,12 @@ export const loginUser = async (req, res) => {
 };
 
 export const logoutUser = (req, res) => {
-  res.clearCookie("suvverseToken", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/api",
+  // Use the same cookie attributes when clearing the cookie.
+  res.clearCookie(AUTH_COOKIE_NAME, {
+    httpOnly: AUTH_COOKIE_OPTIONS.httpOnly,
+    secure: AUTH_COOKIE_OPTIONS.secure,
+    sameSite: AUTH_COOKIE_OPTIONS.sameSite,
+    path: AUTH_COOKIE_OPTIONS.path,
   });
 
   return res.status(200).json({
